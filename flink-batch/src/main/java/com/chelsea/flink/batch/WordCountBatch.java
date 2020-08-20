@@ -6,6 +6,7 @@ import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.operators.AggregateOperator;
 import org.apache.flink.api.java.operators.FlatMapOperator;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.core.fs.FileSystem.WriteMode;
 import org.apache.flink.util.Collector;
 
 /**
@@ -37,9 +38,11 @@ public class WordCountBatch {
             }
         });
         AggregateOperator<Tuple2<String, Integer>> result = ds.groupBy(0).sum(1);
-        for(Tuple2<String, Integer> tuple : result.collect()) {
-            System.out.println(tuple.f0 + "," + tuple.f1);
-        }
+        result.writeAsText("hdfs://172.18.20.237:9000/flink/batch/wordCount", WriteMode.OVERWRITE);
+        env.execute();
+        // for (Tuple2<String, Integer> tuple : result.collect()) {
+        // System.out.println(tuple.f0 + "," + tuple.f1);
+        //  }
     }
 
 }
