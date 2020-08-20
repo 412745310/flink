@@ -1,7 +1,5 @@
 package com.chelsea.flink.batch;
 
-import lombok.extern.slf4j.Slf4j;
-
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
