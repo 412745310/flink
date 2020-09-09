@@ -1,4 +1,4 @@
-package com.chelsea.flink.batch;
+package com.chelsea.flink.batch.source;
 
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
