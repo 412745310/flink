@@ -7,5 +7,7 @@ import com.chelsea.flink.stream.domain.SysUser;
 public interface SysUserDao {
 
     List<SysUser> querySysUser();
+    
+    void addSysUser(SysUser sysUser);
 
 }

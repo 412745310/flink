@@ -6,5 +6,10 @@
 	<select id="querySysUser" resultType="com.chelsea.flink.stream.domain.SysUser">
 		select username,address from sys_user;
 	</select>
+	
+	<insert id="addSysUser">
+		insert into sys_user (username, password, address)
+		values(#{username}, #{password}, #{address})
+	</insert>
 
 </mapper>

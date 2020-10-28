@@ -12,10 +12,14 @@ import com.chelsea.flink.stream.domain.SysUser;
 public class SysUserService {
     
     @Autowired
-    private SysUserDao sysUser;
+    private SysUserDao sysUserDao;
     
     public List<SysUser> querySysUser() {
-        return sysUser.querySysUser();
+        return sysUserDao.querySysUser();
+    }
+    
+    public void addSysUser(SysUser sysUser) {
+        sysUserDao.addSysUser(sysUser);
     }
 
 }
