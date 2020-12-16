@@ -36,7 +36,7 @@ public class SqlDemo {
             private static final long serialVersionUID = 1L;
 
             /**
-             * 设置ts作为eventtime字段
+             * 设置eventtime字段
              */
             @Override
             public long extractTimestamp(Order order) {
@@ -45,6 +45,7 @@ public class SqlDemo {
         });
         // 将DataStream注册为表
         tableEnv.registerDataStream("t_order", wmDs, "orderId,userId,money,createTime.rowTime");
+        // 支持窗口滑动统计的SQL，此处窗口长度为5秒
         String sql = "select userId, sum(money) as sumMoney, max(money) maxMoney from t_order group by tumble(createTime, interval '5' seconds), userId";
         Table query = tableEnv.sqlQuery(sql);
         tableEnv.toRetractStream(query, Row.class).print();
